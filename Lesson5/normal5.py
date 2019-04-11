@@ -24,6 +24,7 @@ def print_help():
     print('3. Удалить папку')
     print('4. Создать папку')
 
+
 def go_to_dir():
     if not dir_name:
         print('Folder name not entered')
@@ -36,29 +37,9 @@ def go_to_dir():
         print('Folder does not exist')
 
 
-# from easy5 import create_dir
-# from easy5 import delete_dir
-# from easy5 import display
-
-
-def create_dir():
-    dir_path = os.path.join(os.getcwd(), dir_name)
-    try:
-        os.mkdir(dir_path)
-    except FileExistsError:
-        print(f'Directory {dir_name} already exists')
-
-
-def delete_dir():
-    dir_path = os.path.join(os.getcwd(), dir_name)
-    try:
-        os.rmdir(dir_path)
-    except OSError:
-        print(f'Unable to delete directory {dir_name}')
-
-def display():
-    print(os.listdir())
-
+from easy5 import create_dir
+from easy5 import delete_dir
+from easy5 import display
 
 user_input = {
     'help': print_help,
@@ -71,14 +52,16 @@ try:
     dir_name = sys.argv[2]
 except IndexError:
     dir_name = None
+
 try:
     key = sys.argv[1]
 except IndexError:
     key = None
+
+
 if key:
     if user_input.get(key):
         user_input[key]()
     else:
         print("Задан неверный ключ")
-        print("Укажите ключ help для получения справки")
 
